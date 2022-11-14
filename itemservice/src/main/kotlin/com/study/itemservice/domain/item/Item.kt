@@ -1,5 +1,6 @@
 package com.study.itemservice.domain.item
 
+import com.study.itemservice.domain.Category
 import javax.persistence.*
 
 @Entity
@@ -14,4 +15,7 @@ abstract class Item {
   var name: String? = null
   var price: Int? = null
   var stockQuantity: Int? = null
+
+  @ManyToMany(mappedBy = "items")
+  var categorise: MutableList<Category>? = null
 }
