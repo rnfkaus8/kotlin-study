@@ -1,14 +1,16 @@
 package com.study.itemservice.domain
 
+import javax.persistence.Column
 import javax.persistence.Embeddable
 
 @Embeddable
 class Address(
-  city: String,
-  street: String,
+  @Column
   val city: String,
-) {
-  val city: String = city
-  val street: String = street
-  val zipcode: String = zipcode
-}
+
+  @Column
+  val street: String,
+
+  @Column
+  val zipcode: String,
+)
