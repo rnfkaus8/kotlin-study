@@ -24,12 +24,21 @@ class Category(
     joinColumns = [JoinColumn(name = "category_id")],
     inverseJoinColumns = [JoinColumn(name = "item_id")]
   )
-  var items: MutableList<Item>?,
+  val items: MutableList<Item> = arrayListOf(),
+
+  @OneToMany(mappedBy = "parent")
+  val child: MutableList<Category> = arrayListOf(),
+
+  parent: Category
+) {
 
   @ManyToOne
   @JoinColumn(name = "parent_id")
-  val parent: Category,
+  final var parent: Category = parent
+    private set
 
-  @OneToMany(mappedBy = "parent")
-  var child: MutableList<Category>?
-)
+  fun addChildCategory(child: Category) {
+    this.child.add(child)
+    child.parent = this
+  }
+}
