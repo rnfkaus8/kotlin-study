@@ -11,7 +11,7 @@ import javax.persistence.OneToMany
 class Member(
   @Id @GeneratedValue
   @Column(name = "member_id")
-  var id: Long? = null,
+  var id: Long = 0L,
 
   val name: String,
 
