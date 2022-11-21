@@ -17,7 +17,7 @@ abstract class Item(
 
     @Id @GeneratedValue
     @Column(name = "item_id")
-    private var id: Long? = null
+    var id: Long? = null
 ) {
     // 비지니스 로직
     fun addStock(quantity: Int) {
