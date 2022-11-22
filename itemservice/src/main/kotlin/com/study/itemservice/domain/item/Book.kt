@@ -8,4 +8,11 @@ import javax.persistence.Entity
 class Book(
   var author: String,
   var isbn: String,
-): Item()
+  name: String,
+  price: Int,
+  stockQuantity: Int,
+): Item(
+  name,
+  price,
+  stockQuantity,
+)

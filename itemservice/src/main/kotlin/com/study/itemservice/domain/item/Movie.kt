@@ -7,6 +7,9 @@ import javax.persistence.Entity
 @Entity
 @DiscriminatorValue("M")
 class Movie(
-  var director: String,
-  var actor: String,
-): Item()
+    var director: String,
+    var actor: String,
+    name: String,
+    price: Int,
+    stockQuantity: Int,
+) : Item(name, price, stockQuantity)
