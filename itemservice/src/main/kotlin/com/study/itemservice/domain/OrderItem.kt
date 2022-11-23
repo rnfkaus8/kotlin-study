@@ -20,8 +20,28 @@ class OrderItem(
 
   @ManyToOne
   @JoinColumn(name = "order_id")
-  val order: Order,
+  var order: Order? = null,
 
   val orderPrice: Int,
   val count: Int,
-)
+) {
+  /**
+   * 주문 취소
+   */
+  fun cancel() {
+    item.addStock(count)
+  }
+
+  //
+  fun getTotalPrice(): Int {
+    return orderPrice * count
+  }
+
+  companion object {
+    fun createOrderItem(item: Item, orderPrice: Int, count: Int): OrderItem {
+      val orderItem = OrderItem(item = item, orderPrice = orderPrice, count = count)
+      item.removeStock(count)
+      return orderItem
+    }
+  }
+}
