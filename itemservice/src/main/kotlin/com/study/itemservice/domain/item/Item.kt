@@ -21,7 +21,7 @@ abstract class Item(
 ) {
     // 비지니스 로직
     fun addStock(quantity: Int) {
-        this.stockQuantity -= quantity
+        this.stockQuantity += quantity
     }
 
     fun removeStock(quantity: Int) {
