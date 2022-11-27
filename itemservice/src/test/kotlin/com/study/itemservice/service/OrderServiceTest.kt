@@ -67,10 +67,20 @@ internal class OrderServiceTest(
   @Test
   fun 주문취소() {
     // given
+    val member = createMember("member1", Address("seoul", "gangnam", "123-123"))
+    val item = createBook("book1", 10000, 10, "kim", "isbn")
+    val orderCount = 2
+
+    val orderId = orderService.order(member.id, item.id!!, orderCount)
 
     // when
+    orderService.cancelOrder(orderId)
 
     // then
+    val findOrder = orderRepository.findOne(orderId)
+
+    assertEquals(OrderStatus.CANCEL, findOrder.status, "주문 취소시 상태는 CANCEL 이다.")
+    assertEquals(10, item.stockQuantity, "주문 취소된 상품은 그만큼 재고가 증가해야 한다.")
   }
 
   private fun createBook(name: String, price: Int, stockQuantity: Int, author: String, isbn: String): Book {
