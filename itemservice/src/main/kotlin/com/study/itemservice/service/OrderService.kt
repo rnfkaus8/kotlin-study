@@ -13,9 +13,9 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional(readOnly = true)
 class OrderService(
-    val orderRepository: OrderRepository,
-    val memberRepository: MemberRepository,
-    val itemRepository: ItemRepository,
+  private val orderRepository: OrderRepository,
+  private val memberRepository: MemberRepository,
+  private val itemRepository: ItemRepository,
 ) {
 
     // 주문
