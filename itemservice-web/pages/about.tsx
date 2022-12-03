@@ -1,9 +1,11 @@
 import React from 'react';
+import NavBar from '../components/NavBar';
 
 const About: React.FC = () => {
   return (
     <div>
-      <h1>about</h1>
+      <NavBar />
+      <h1>About</h1>
     </div>
   );
 };
