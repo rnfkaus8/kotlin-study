@@ -1,13 +1,17 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import NavBar from '../components/NavBar';
+import BodyHeader from '../components/bodyHeader';
+import Footer from '../components/footer';
+
+import './styles.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
-      <NavBar />
+    <div className="container">
+      <BodyHeader />
       <Component {...pageProps} />
-    </>
+      <Footer />
+    </div>
   );
 };
 
