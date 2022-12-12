@@ -2,8 +2,9 @@ import React from 'react';
 
 const MemberCreateForm = () => {
   return (
-    <form action="/members/new" method="post">
+    <form action="http://localhost:8080/members/new" method="post">
       <label htmlFor="name">
+        이름
         <input
           type="text"
           id="name"
@@ -11,7 +12,6 @@ const MemberCreateForm = () => {
           placeholder="이름을 입력하세요"
           required
         />
-        이름
       </label>
       <label htmlFor="city">
         도시
@@ -23,12 +23,22 @@ const MemberCreateForm = () => {
           required
         />
       </label>
+      <label htmlFor="street">
+        거리
+        <input
+          type="text"
+          id="street"
+          name="street"
+          placeholder="거리를 입력하세요"
+          required
+        />
+      </label>
       <label htmlFor="zipcode">
         우편번호
         <input
           type="text"
-          id="city"
-          name="city"
+          id="zipcode"
+          name="zipcode"
           placeholder="우편번호를 입력하세요"
           required
         />
