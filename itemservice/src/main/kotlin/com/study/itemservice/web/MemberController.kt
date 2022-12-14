@@ -27,7 +27,7 @@ class MemberController(
         log.info("zipcode : ${form.zipcode}")
         val address: Address = Address(city = form.city, street = form.street, zipcode = form.zipcode)
         val member: Member = Member(name = form.name, address = address)
-//        memberService.join(member)
+        memberService.join(member)
         return "hello"
     }
 
