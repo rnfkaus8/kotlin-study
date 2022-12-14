@@ -1,18 +1,24 @@
 import Link from 'next/link';
 import React from 'react';
+import { Layout } from 'antd';
+
+const { Header } = Layout;
 
 const BodyHeader = () => {
   return (
-    <div className="header">
-      <ul>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-      </ul>
-      <Link href="/">
-        <h3 className="text-muted">HELLO SHOP</h3>
-      </Link>
-    </div>
+    <Layout>
+      <Header>
+        <div
+          style={{
+            float: 'left',
+          }}
+        >
+          <Link href="/" style={{ color: 'white' }}>
+            <h3 className="text-muted">HELLO SHOP</h3>
+          </Link>
+        </div>
+      </Header>
+    </Layout>
   );
 };
 
