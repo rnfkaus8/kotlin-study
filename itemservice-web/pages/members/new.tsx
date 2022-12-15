@@ -21,6 +21,9 @@ const MemberCreateForm = () => {
       },
       body: JSON.stringify(data),
     })
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
       })
