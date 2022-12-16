@@ -2,6 +2,7 @@ package com.study.itemservice.web
 
 import com.study.itemservice.domain.Address
 import com.study.itemservice.domain.Member
+import com.study.itemservice.dto.MemberDto
 import com.study.itemservice.service.MemberService
 import lombok.extern.slf4j.Slf4j
 import org.slf4j.LoggerFactory
@@ -20,7 +21,7 @@ class MemberController(
     private val log = LoggerFactory.getLogger(javaClass)
 
     @PostMapping(value = ["/members/new"])
-    fun create(@RequestBody @Valid form: MemberForm): String {
+    fun create(@RequestBody @Valid form: MemberForm): MemberDto {
         log.info("name : ${form.name}")
         log.info("city : ${form.city}")
         log.info("street : ${form.street}")
@@ -28,7 +29,7 @@ class MemberController(
         val address: Address = Address(city = form.city, street = form.street, zipcode = form.zipcode)
         val member: Member = Member(name = form.name, address = address)
         memberService.join(member)
-        return "hello"
+        return MemberDto.toDto(member)
     }
 
 }
