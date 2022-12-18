@@ -1,6 +1,7 @@
 package com.study.itemservice.service
 
 import com.study.itemservice.domain.Member
+import com.study.itemservice.dto.member.UpdateMemberRequest
 import com.study.itemservice.repository.MemberRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -34,6 +35,15 @@ class MemberService(
 
     fun findOne(memberId: Long): Member {
         return memberRepository.findOne(memberId)
+    }
+
+    @Transactional
+    fun update(id: Long, request: UpdateMemberRequest) {
+        val member: Member = memberRepository.findOne(id)
+        member.changeName(request.name)
+        if (request.address != null) {
+            member.changeAddress(request.address!!)
+        }
     }
 
 }
