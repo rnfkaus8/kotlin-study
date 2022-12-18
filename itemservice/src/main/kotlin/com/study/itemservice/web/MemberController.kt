@@ -2,12 +2,15 @@ package com.study.itemservice.web
 
 import com.study.itemservice.domain.Address
 import com.study.itemservice.domain.Member
-import com.study.itemservice.dto.MemberDto
+import com.study.itemservice.dto.member.MemberDto
+import com.study.itemservice.dto.member.UpdateMemberRequest
+import com.study.itemservice.dto.member.MemberForm
 import com.study.itemservice.service.MemberService
 import lombok.extern.slf4j.Slf4j
 import org.slf4j.LoggerFactory
-import org.springframework.validation.BindingResult
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
@@ -30,6 +33,13 @@ class MemberController(
         val member: Member = Member(name = form.name, address = address)
         memberService.join(member)
         return MemberDto.toDto(member)
+    }
+
+    @PutMapping(value = ["/members/{id}"])
+    fun updateMember(@PathVariable("id") id: Long, @RequestBody @Valid request: UpdateMemberRequest): MemberDto {
+        memberService.update(id, request)
+        val findMember = memberService.findOne(id)
+        return MemberDto.toDto(findMember)
     }
 
 }
