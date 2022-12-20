@@ -14,7 +14,7 @@ class Order(
   @Column(name = "order_id")
   var id: Long? = null,
 
-  @OneToMany(mappedBy = "order")
+  @OneToMany(mappedBy = "order", cascade = [CascadeType.ALL])
   val orderItems: MutableList<OrderItem> = ArrayList(),
 
   val orderDate: LocalDateTime,
@@ -31,7 +31,7 @@ class Order(
       member.orders.add(this)
     }
 
-  @OneToOne
+  @OneToOne(cascade = [CascadeType.ALL])
   @JoinColumn(name = "delivery_id")
   var delivery: Delivery = delivery
     set(value) {
