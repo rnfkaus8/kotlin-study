@@ -13,11 +13,19 @@ class Member(
   @Column(name = "member_id")
   var id: Long = 0L,
 
-  val name: String,
+  var name: String,
 
   @Embedded
-  val address: Address,
+  var address: Address,
 
   @OneToMany(mappedBy = "member")
   val orders: MutableList<Order> = mutableListOf(),
-)
+) {
+  fun changeName(name: String) {
+    this.name = name
+  }
+
+  fun changeAddress(address: Address) {
+    this.address = Address(city = address.city, street = address.street, zipcode = address.zipcode)
+  }
+}
