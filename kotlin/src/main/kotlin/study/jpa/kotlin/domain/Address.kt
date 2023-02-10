@@ -1,13 +1,20 @@
 package study.jpa.kotlin.domain
 
-import jakarta.persistence.Access
-import jakarta.persistence.AccessType
+import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 
 @Embeddable
-@Access(AccessType.FIELD)
 class Address(
-  val city: String,
-  val street: String,
-  val zipcode: String
-)
+  city: String,
+  street: String,
+  zipcode: String
+) {
+  @Column
+  val city: String = city
+
+  @Column
+  val street: String = street
+
+  @Column
+  val zipcode: String = zipcode
+}
