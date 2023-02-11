@@ -1,6 +1,7 @@
 package study.jpa.kotlin.domain
 
 import jakarta.persistence.*
+import jakarta.persistence.FetchType.LAZY
 import study.jpa.kotlin.domain.item.Item
 
 @Entity
@@ -23,7 +24,7 @@ class Category(
   )
   var items: MutableList<Item> = arrayListOf()
 
-  @ManyToOne
+  @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "parent_id")
   var parent: Category? = parent
 

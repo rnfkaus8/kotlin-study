@@ -1,6 +1,7 @@
 package study.jpa.kotlin.domain
 
 import jakarta.persistence.*
+import jakarta.persistence.FetchType.LAZY
 import study.jpa.kotlin.domain.item.Item
 
 @Entity
@@ -15,11 +16,11 @@ class OrderItem(
   @Column(name = "order_item_id")
   var id: Long? = null
 
-  @ManyToOne
+  @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "item_id")
   var item: Item = item
 
-  @ManyToOne
+  @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "order_id")
   var order: Order? = null
 

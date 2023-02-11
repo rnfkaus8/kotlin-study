@@ -1,6 +1,7 @@
 package study.jpa.kotlin.domain
 
 import jakarta.persistence.*
+import jakarta.persistence.FetchType.LAZY
 
 @Entity
 class Delivery(
@@ -13,7 +14,7 @@ class Delivery(
   @Column(name = "delivery_id")
   var id: Long? = null
 
-  @OneToOne(mappedBy = "delivery")
+  @OneToOne(mappedBy = "delivery", fetch = LAZY)
   var order: Order = order
 
   @Embedded

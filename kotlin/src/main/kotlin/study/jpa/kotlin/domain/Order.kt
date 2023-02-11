@@ -1,6 +1,7 @@
 package study.jpa.kotlin.domain
 
 import jakarta.persistence.*
+import jakarta.persistence.FetchType.LAZY
 import java.time.LocalDateTime
 
 @Entity
@@ -17,14 +18,14 @@ class Order(
   @Column(name = "order_id")
   var id: Long? = null
 
-  @ManyToOne
+  @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "member_id")
   var member: Member = member
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+  @OneToMany(fetch = LAZY, mappedBy = "order")
   var orderItems: MutableList<OrderItem> = arrayListOf()
 
-  @OneToOne
+  @OneToOne(fetch = LAZY)
   @JoinColumn(name = "delivery_id")
   var delivery: Delivery = delivery
 
