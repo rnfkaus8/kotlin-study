@@ -21,16 +21,29 @@ class Order(
   @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "member_id")
   var member: Member = member
+    protected set(value) {
+      field = value
+      value.orders.add(this)
+    }
 
-  @OneToMany(fetch = LAZY, mappedBy = "order")
+  @OneToMany(mappedBy = "order", cascade = [CascadeType.ALL])
   var orderItems: MutableList<OrderItem> = arrayListOf()
 
-  @OneToOne(fetch = LAZY)
+  @OneToOne(fetch = LAZY, cascade = [CascadeType.ALL])
   @JoinColumn(name = "delivery_id")
   var delivery: Delivery = delivery
+    protected set(value) {
+      field = value
+      delivery.order = this
+    }
 
   var orderDate: LocalDateTime = orderDate
 
   @Enumerated(EnumType.STRING)
   var status: OrderStatus = status
+
+  fun addOrderItem(orderItem: OrderItem) {
+    orderItems.add(orderItem)
+    orderItem.order = this
+  }
 }
