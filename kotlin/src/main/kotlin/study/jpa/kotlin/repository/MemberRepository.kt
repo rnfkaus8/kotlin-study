@@ -1,13 +1,11 @@
 package study.jpa.kotlin.repository
 
 import jakarta.persistence.EntityManager
-import jakarta.persistence.PersistenceContext
 import org.springframework.stereotype.Repository
 import study.jpa.kotlin.domain.Member
 
 @Repository
 class MemberRepository(
-  @PersistenceContext
   val em: EntityManager
 ) {
 
